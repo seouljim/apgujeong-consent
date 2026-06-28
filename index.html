@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>압구정3구역 자료복사 공동신청</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root{
+      --blue:#0b2e6f;
+      --green:#2f8f3a;
+      --gold:#d8a91d;
+      --bg:#f4f6fb;
+      --card:#ffffff;
+      --line:#d6deee;
+      --text:#111827;
+      --muted:#6b7280;
+      --red:#b91c1c;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    .wrap{max-width:880px;margin:0 auto;padding:18px}
+    .doc{
+      background:white;
+      border:1px solid var(--line);
+      border-radius:14px;
+      box-shadow:0 12px 32px rgba(15,23,42,.10);
+      overflow:hidden;
+    }
+    .letterhead{
+      padding:28px 26px 10px;
+      text-align:center;
+      background:white;
+    }
+    .letterhead h1{
+      margin:0 0 10px;
+      font-size:25px;
+      letter-spacing:-.5px;
+      font-weight:900;
+    }
+    .meta{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      font-size:13px;
+      font-weight:700;
+    }
+    .greenbar{height:8px;background:var(--green);margin-top:10px}
+    .titlebox{
+      padding:20px 26px;
+      border-bottom:2px solid #111827;
+      background:#fff;
+    }
+    .titlebox table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:15px;
+    }
+    .titlebox th{
+      width:100px;
+      text-align:left;
+      padding:6px 0;
+      color:#111827;
+      white-space:nowrap;
+    }
+    .titlebox td{padding:6px 0}
+    .content{padding:22px 26px 30px}
+    .notice{
+      background:#fff7e6;
+      border:1px solid #efd084;
+      border-radius:12px;
+      padding:14px;
+      margin:14px 0 18px;
+    }
+    h2{
+      color:var(--blue);
+      font-size:19px;
+      margin:24px 0 10px;
+      padding-bottom:5px;
+      border-bottom:1px solid var(--line);
+    }
+    ol{padding-left:22px}
+    li{margin:7px 0}
+    .subnote{font-size:13px;color:var(--muted)}
+    .box{
+      background:#fafafa;
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:14px;
+      margin:12px 0;
+    }
+    .check{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      margin:12px 0;
+    }
+    .check input{width:auto;margin-top:6px;transform:scale(1.15)}
+    label{display:block;font-weight:800;margin:12px 0 6px}
+    input, select{
+      width:100%;
+      padding:12px;
+      border:1px solid var(--line);
+      border-radius:10px;
+      font-size:16px;
+      background:white;
+    }
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(max-width:640px){
+      .row{grid-template-columns:1fr}
+      .letterhead h1{font-size:21px}
+      .content,.titlebox,.letterhead{padding-left:18px;padding-right:18px}
+      .titlebox table{font-size:14px}
+    }
+    canvas{
+      width:100%;
+      height:180px;
+      border:2px dashed #9ca3af;
+      border-radius:12px;
+      background:white;
+      touch-action:none;
+    }
+    button{
+      border:0;
+      border-radius:12px;
+      padding:13px 16px;
+      font-size:16px;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .primary{background:var(--blue);color:white;width:100%;margin-top:16px}
+    .secondary{background:#e5e7eb;color:#111827}
+    .done{display:none;background:#ecfdf5;border:1px solid #86efac;color:#065f46;padding:16px;border-radius:12px;margin-top:16px;font-weight:900}
+    .error{display:none;background:#fef2f2;border:1px solid #fca5a5;color:#991b1b;padding:16px;border-radius:12px;margin-top:16px;font-weight:900}
+    .footer{
+      text-align:center;
+      padding:24px 0 10px;
+      font-weight:900;
+      font-size:20px;
+    }
+    .small{font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="doc">
+    <div class="letterhead">
+      <h1>압구정특별계획구역③ 재건축정비사업조합</h1>
+      <div class="meta">
+        <span>자료복사 공동신청 동의</span>
+        <span>압구정3구역 전체 조합원 대상</span>
+      </div>
+      <div class="greenbar"></div>
+    </div>
+
+    <div class="titlebox">
+      <table>
+        <tr><th>문서명</th><td>정비사업 관련자료 복사 공동신청 동의서</td></tr>
+        <tr><th>제목</th><td><b>평형설문조사용 추정분담금 산정근거 자료 복사 공동신청</b></td></tr>
+        <tr><th>취지</th><td>전체 조합원의 합리적 의사결정 및 장래 관리처분 분쟁 예방</td></tr>
+      </table>
+    </div>
+
+    <div class="content">
+      <div class="notice">
+        본 공동신청은 특정 차수의 이익을 요구하거나 현재 단계에서 종전자산 감정평가 결과를 다투기 위한 것이 아닙니다.
+        조합이 배포한 평형설문조사용 추정분담금 자료의 산정근거를 조합원들이 확인하고,
+        향후 권리가액·권리순번·평형배정 기준에 대한 불필요한 오해와 분쟁을 예방하기 위한 것입니다.
+      </div>
+
+      <h2>1. 공동으로 복사 신청할 핵심자료</h2>
+      <ol>
+        <li><b>평형설문조사용 추정분담금 산정 원자료 및 산식</b></li>
+        <li><b>종전자산 추정가액 산정에 사용된 엑셀파일 또는 원자료</b></li>
+        <li><b>KB상위평균가를 적용한 근거자료</b><br><span class="subnote">KB일반평균가가 아닌 KB상위평균가를 적용한 사유 포함</span></li>
+        <li><b>공시가격보정액 산정자료 및 2.1배 보정률 산정근거</b></li>
+        <li><b>차수별·평형별·동별 대지지분표</b></li>
+        <li><b>추정분담금 자료에 대지지분을 표시하지 않은 사유에 관한 검토자료</b></li>
+        <li><b>차수별·평형별 종전자산 추정가액 비교에 사용된 기준자료</b><br><span class="subnote">개인정보는 제외하고, 비식별 처리된 비교 기준·적용 시세·적용 공시가격·보정방식·산정근거 자료</span></li>
+        <li><b>향후 조합원 분양신청, 권리순번, 평형 배정기준 수립 시 종전자산 추정가액 또는 종전자산 감정평가액이 어떻게 활용되는지에 관한 조합 내부 검토자료 또는 향후 설명계획</b></li>
+      </ol>
+
+      <h2>2. 신청 이유</h2>
+      <p>
+        조합이 배포한 평형설문조사용 추정분담금 자료는 최종 관리처분계획이나 종전자산 감정평가 자료는 아니라고 설명되고 있습니다.
+        그러나 해당 자료는 조합원이 희망평형을 선택하고, 향후 추정분담금을 예상하며, 본인의 권리가액과 차수별 형평성을 판단하는 데 실질적으로 영향을 미치는 조합 공식자료입니다.
+      </p>
+      <p>
+        따라서 조합원으로서는 위 산정방식이 어떠한 자료와 기준에 따라 작성되었는지 확인할 필요가 있습니다.
+        본 공동신청은 우선 최소한의 핵심자료에 대한 복사를 요청하는 것이며, 제공받은 자료를 검토한 후 산정근거 확인을 위해 필요한 경우 관련 보완자료의 추가 복사를 요청할 수 있습니다.
+      </p>
+
+      <h2>3. 동의 확인</h2>
+      <div class="box">
+        <div class="check"><input id="agree1" type="checkbox"><span>본인은 위 자료복사 공동신청 취지에 동의합니다.</span></div>
+        <div class="check"><input id="agree2" type="checkbox"><span>본 동의가 특정 차수의 이익 요구가 아니라, 압구정3구역 전체 조합원의 자료확인 및 장래 분쟁 예방 목적임을 확인합니다.</span></div>
+        <div class="check"><input id="agree3" type="checkbox"><span>본인의 성명, 소유 동·호수, 연락처 뒤 4자리, 전자서명, 제출일시가 공동신청인 명부에 포함되는 것에 동의합니다.</span></div>
+        <div class="check"><input id="privacy" type="checkbox"><span>개인정보 수집·이용에 동의합니다. 수집 목적은 공동신청인 확인 및 자료복사 신청 제출이며, 수집 항목은 성명, 소유 동·호수, 연락처, 이메일, 전자서명, 제출일시입니다. 보유기간은 관련 절차 종료 후 1년 이내입니다.</span></div>
+      </div>
+
+      <h2>4. 조합원 정보</h2>
+      <div class="row">
+        <div><label>성명</label><input id="name" placeholder="예: 홍길동"></div>
+        <div><label>소유 동</label><input id="building" placeholder="예: 87동"></div>
+      </div>
+      <div class="row">
+        <div><label>소유 호수</label><input id="unit" placeholder="예: 1103호"></div>
+        <div><label>연락처</label><input id="phone" placeholder="예: 010-1234-5678"></div>
+      </div>
+      <div class="row">
+        <div><label>이메일 선택</label><input id="email" type="email" placeholder="선택 입력"></div>
+        <div><label>신청인 구분</label><select id="role"><option>조합원 본인</option><option>가족</option><option>대리인</option></select></div>
+      </div>
+
+      <h2>5. 전자서명</h2>
+      <p class="small">손가락 또는 마우스로 서명해 주세요.</p>
+      <canvas id="sig" width="800" height="240"></canvas>
+      <div style="display:flex;gap:10px;margin-top:10px">
+        <button class="secondary" type="button" onclick="clearSignature()">서명 지우기</button>
+      </div>
+
+      <button class="primary" id="submitBtn" onclick="submitForm()">공동신청 동의 제출</button>
+      <div id="done" class="done">제출되었습니다. 참여해 주셔서 감사합니다.</div>
+      <div id="err" class="error"></div>
+
+      <div class="footer">압구정3구역 전체 조합원의 합리적 의사결정을 위한 공동신청</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const SUPABASE_URL = "https://nzwhbhxmxsfqdgfepfds.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56d2hiaHhteHNmcWRnZmVwZmRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI2MDc4OTksImV4cCI6MjA5ODE4Mzg5OX0.K8uKDAS-10E9SI6gi7Kt-M1-8m44Ni6N0wnm6xApRd4";
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const canvas = document.getElementById('sig');
+  const ctx = canvas.getContext('2d');
+  let drawing = false, signed = false;
+
+  function getPos(e){
+    const rect = canvas.getBoundingClientRect();
+    const touch = e.touches && e.touches[0];
+    const clientX = touch ? touch.clientX : e.clientX;
+    const clientY = touch ? touch.clientY : e.clientY;
+    return {x:(clientX-rect.left)*(canvas.width/rect.width), y:(clientY-rect.top)*(canvas.height/rect.height)};
+  }
+  function start(e){drawing=true; signed=true; const p=getPos(e); ctx.beginPath(); ctx.moveTo(p.x,p.y); e.preventDefault();}
+  function move(e){if(!drawing)return; const p=getPos(e); ctx.lineWidth=3; ctx.lineCap='round'; ctx.strokeStyle='#111827'; ctx.lineTo(p.x,p.y); ctx.stroke(); e.preventDefault();}
+  function end(){drawing=false;}
+  canvas.addEventListener('mousedown',start); canvas.addEventListener('mousemove',move); window.addEventListener('mouseup',end);
+  canvas.addEventListener('touchstart',start,{passive:false}); canvas.addEventListener('touchmove',move,{passive:false}); canvas.addEventListener('touchend',end);
+
+  function clearSignature(){ctx.clearRect(0,0,canvas.width,canvas.height); signed=false;}
+  function onlyDigits(s){return (s||'').replace(/\D/g,'');}
+  function showError(msg){const e=document.getElementById('err'); e.innerText=msg; e.style.display='block';}
+
+  async function submitForm(){
+    document.getElementById('err').style.display='none';
+    const name = document.getElementById('name').value.trim();
+    const building = document.getElementById('building').value.trim();
+    const unit = document.getElementById('unit').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const phoneDigits = onlyDigits(phone);
+    const email = document.getElementById('email').value.trim();
+    const role = document.getElementById('role').value;
+    const agrees = ['agree1','agree2','agree3','privacy'].every(id=>document.getElementById(id).checked);
+
+    if(!agrees) return showError('필수 동의 항목을 모두 체크해 주세요.');
+    if(!name || !building || !unit || phoneDigits.length < 10) return showError('성명, 소유 동·호수, 연락처를 정확히 입력해 주세요.');
+    if(!signed) return showError('전자서명을 입력해 주세요.');
+    if(SUPABASE_URL.includes('YOUR_') || SUPABASE_ANON_KEY.includes('YOUR_')) return showError('관리자가 아직 데이터 저장 설정을 완료하지 않았습니다.');
+
+    const signature = canvas.toDataURL('image/png');
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true; btn.innerText = '제출 중...';
+
+    const payload = {
+      name, building, unit, phone, phone_last4: phoneDigits.slice(-4), email, role,
+      signature_png: signature,
+      consent_version: "v1_20260628",
+      user_agent: navigator.userAgent
+    };
+
+    const { error } = await supabaseClient.from('consents').insert(payload);
+    if(error){
+      btn.disabled=false; btn.innerText='공동신청 동의 제출';
+      if(String(error.message).includes('duplicate')) return showError('이미 제출된 정보로 보입니다. 수정이 필요하면 관리자에게 문의해 주세요.');
+      return showError('제출 중 오류가 발생했습니다: ' + error.message);
+    }
+    document.getElementById('done').style.display='block';
+    btn.style.display='none';
+  }
+</script>
+</body>
+</html>
