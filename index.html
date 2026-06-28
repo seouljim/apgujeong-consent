@@ -3,171 +3,344 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>압구정3구역 자료복사 공동신청</title>
+  <title>압구정3구역 자료복사 신청 취지 동의서</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
+    :root{
+      --bg:#f4f4f4;
+      --paper:#ffffff;
+      --line:#333333;
+      --light:#eeeeee;
+      --text:#111111;
+      --muted:#666666;
+      --green:#2f8f3a;
+      --blue:#0b2e6f;
+      --red:#b91c1c;
+    }
     *{box-sizing:border-box}
     body{
       margin:0;
-      background:#f3f4f6;
-      color:#111;
-      font-family:"Noto Sans KR", "Malgun Gothic", Arial, sans-serif;
-      line-height:1.55;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.65;
     }
-    .page{max-width:860px;margin:0 auto;padding:20px 14px 46px}
-    .sheet{
-      background:#fff;
-      width:100%;
-      max-width:760px;
+    .wrap{
+      max-width:860px;
       margin:0 auto;
-      padding:28px 30px 32px;
-      border:1px solid #ddd;
-      box-shadow:0 8px 28px rgba(0,0,0,.12);
+      padding:20px;
     }
-    .form-note{font-size:12px;margin-bottom:8px;color:#333}
-    table.form{width:100%;border-collapse:collapse;table-layout:fixed;font-size:14px}
-    table.form th, table.form td{border:1px solid #555;padding:9px 8px;vertical-align:middle}
-    table.form th{background:#f1f1f1;text-align:center;font-weight:700}
-    table.form td{background:#fff}
-    .top th{height:42px}
-    .title{font-size:22px;font-weight:800;text-align:center;letter-spacing:.5px;padding:16px 8px!important}
-    .label{width:24%;background:#fafafa!important;text-align:center;font-weight:700}
-    .center{text-align:center}
-    .small{font-size:12px;color:#666}
-    .muted{color:#666}
-    .req-list{margin:0;padding-left:19px}
-    .req-list li{margin:6px 0}
+    .paper{
+      background:var(--paper);
+      border:1px solid #cfcfcf;
+      box-shadow:0 8px 24px rgba(0,0,0,.08);
+      padding:34px 38px;
+    }
+    .top-small{
+      font-size:12px;
+      color:#444;
+      margin-bottom:10px;
+    }
+    .head{
+      text-align:center;
+      margin-bottom:12px;
+    }
+    .head h1{
+      margin:0;
+      font-size:26px;
+      font-weight:900;
+      letter-spacing:-0.5px;
+    }
+    .addr{
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      flex-wrap:wrap;
+      font-size:13px;
+      margin-top:8px;
+      font-weight:700;
+    }
+    .greenbar{
+      height:7px;
+      background:var(--green);
+      margin:10px 0 20px;
+    }
+    table.form{
+      width:100%;
+      border-collapse:collapse;
+      border:1.5px solid var(--line);
+      font-size:14px;
+      margin-bottom:18px;
+    }
+    table.form th, table.form td{
+      border:1px solid var(--line);
+      padding:10px 12px;
+      vertical-align:middle;
+    }
+    table.form th{
+      background:var(--light);
+      text-align:center;
+      width:24%;
+      font-weight:800;
+    }
+    table.form td{
+      min-height:42px;
+    }
+    .doc-title{
+      text-align:center;
+      font-size:22px;
+      font-weight:900;
+      letter-spacing:1px;
+      padding:16px 10px!important;
+    }
+    .notice{
+      border:1px solid #d0d0d0;
+      background:#fafafa;
+      padding:14px 16px;
+      margin:18px 0;
+      font-size:15px;
+    }
+    .notice b{color:var(--blue)}
+    h2{
+      font-size:18px;
+      margin:26px 0 10px;
+      border-bottom:2px solid #111;
+      padding-bottom:6px;
+    }
+    ol{padding-left:23px;margin-top:8px}
+    li{margin:7px 0}
+    .subnote{font-size:13px;color:var(--muted)}
+    .check-box{
+      border:1px solid #cfcfcf;
+      padding:14px;
+      background:#fbfbfb;
+      margin-top:12px;
+    }
+    .check{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      margin:12px 0;
+    }
+    .check input{
+      width:auto;
+      margin-top:6px;
+      transform:scale(1.18);
+    }
+    label{
+      display:block;
+      font-weight:800;
+      margin:12px 0 6px;
+      font-size:14px;
+    }
     input, select{
-      width:100%;border:0;border-bottom:1px solid #999;background:transparent;
-      padding:6px 4px;font-size:15px;font-family:inherit;outline:none;
+      width:100%;
+      border:1px solid #aaa;
+      border-radius:3px;
+      padding:10px;
+      font-size:16px;
+      background:white;
     }
-    input::placeholder{color:#aaa}
-    .inline{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .agree-box{border:1px solid #555;border-top:0;padding:12px 12px 4px;font-size:14px}
-    .check{display:flex;gap:9px;align-items:flex-start;margin:9px 0}
-    .check input{width:auto;margin-top:5px;transform:scale(1.1);border:initial}
-    .privacy{font-size:12px;color:#555;margin:8px 0 2px;padding-left:26px}
-    .signature-row{border:1px solid #555;border-top:0;padding:16px 12px}
-    canvas{width:100%;height:150px;border:1px dashed #777;background:#fff;touch-action:none}
-    .button-row{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
-    button{border:0;border-radius:8px;padding:11px 14px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit}
-    .primary{background:#1f2937;color:#fff;width:100%;margin-top:16px;padding:14px}
-    .secondary{background:#e5e7eb;color:#111}
-    .done{display:none;margin-top:14px;padding:13px;border:1px solid #15803d;background:#f0fdf4;color:#166534;font-weight:800;text-align:center}
-    .error{display:none;margin-top:14px;padding:13px;border:1px solid #dc2626;background:#fef2f2;color:#991b1b;font-weight:800}
-    .seal-space{height:54px;text-align:center;font-weight:800;font-size:18px;padding-top:16px}
-    .bottom-org{text-align:center;font-weight:900;font-size:18px;margin-top:18px}
+    .row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+    canvas{
+      width:100%;
+      height:180px;
+      border:1.5px solid #333;
+      background:white;
+      touch-action:none;
+    }
+    .sign-help{
+      font-size:13px;
+      color:var(--muted);
+      margin:3px 0 8px;
+    }
+    button{
+      border:0;
+      border-radius:6px;
+      padding:12px 16px;
+      font-size:16px;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .primary{
+      background:var(--blue);
+      color:white;
+      width:100%;
+      margin-top:16px;
+    }
+    .secondary{
+      background:#e5e7eb;
+      color:#111827;
+    }
+    .done{
+      display:none;
+      background:#ecfdf5;
+      border:1px solid #86efac;
+      color:#065f46;
+      padding:16px;
+      margin-top:16px;
+      font-weight:900;
+    }
+    .error{
+      display:none;
+      background:#fef2f2;
+      border:1px solid #fca5a5;
+      color:#991b1b;
+      padding:16px;
+      margin-top:16px;
+      font-weight:900;
+    }
+    .footer{
+      text-align:center;
+      font-size:18px;
+      font-weight:900;
+      margin-top:32px;
+      letter-spacing:6px;
+    }
+    .small{font-size:13px;color:var(--muted)}
     @media(max-width:640px){
-      .sheet{padding:18px 12px}
-      table.form{font-size:12.5px}
-      table.form th, table.form td{padding:7px 5px}
-      .title{font-size:19px}
-      .inline{grid-template-columns:1fr}
-    }
-    @media print{
-      body{background:white}
-      .page{padding:0}
-      .sheet{box-shadow:none;border:0;max-width:none;padding:10mm}
-      .noprint{display:none!important}
-      input{border-bottom:0}
-      canvas{border:1px solid #777}
+      .wrap{padding:10px}
+      .paper{padding:20px 14px}
+      .head h1{font-size:21px}
+      table.form{font-size:13px}
+      table.form th, table.form td{padding:8px}
+      .row{grid-template-columns:1fr}
+      .doc-title{font-size:19px}
     }
   </style>
 </head>
 <body>
-<div class="page">
-  <div class="sheet">
-    <div class="form-note">(서식1) 정보공개자료 복사 청구서</div>
+<div class="wrap">
+  <div class="paper">
+    <div class="top-small">[서식] 정비사업 관련자료 복사 신청 취지 동의서</div>
 
-    <table class="form top">
-      <colgroup><col style="width:33.3%"><col style="width:33.3%"><col style="width:33.4%"></colgroup>
-      <tr><th>접수번호</th><th>접수일</th><th>처리기간</th></tr>
-      <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-      <tr><td colspan="3" class="title">정보공개 자료 복사 청구서</td></tr>
-    </table>
+    <div class="head">
+      <h1>압구정특별계획구역③ 재건축정비사업조합</h1>
+      <div class="addr">
+        <span>주소  서울시 강남구 압구정로 29길 71</span>
+        <span>자료복사 신청 취지 동의</span>
+      </div>
+    </div>
+    <div class="greenbar"></div>
 
-    <table class="form" style="border-top:0">
-      <colgroup><col style="width:18%"><col style="width:32%"><col style="width:25%"><col style="width:25%"></colgroup>
+    <table class="form">
       <tr>
-        <th rowspan="3">청구인</th>
-        <td>성명<br><input id="name" placeholder="예: 홍길동"></td>
-        <td colspan="2">주민등록번호<br><span class="small">공동신청 명부에는 기재하지 않음</span></td>
+        <th>접수번호</th>
+        <td></td>
+        <th>접수일</th>
+        <td></td>
+        <th>처리기간</th>
+        <td></td>
       </tr>
       <tr>
-        <td colspan="3">주소 또는 소유 동·호수<br>
-          <div class="inline"><input id="building" placeholder="소유 동 예: 87동"><input id="unit" placeholder="소유 호수 예: 1103호"></div>
+        <td colspan="6" class="doc-title">정비사업 관련자료 복사 신청 취지 동의서</td>
+      </tr>
+      <tr>
+        <th>동의 취지</th>
+        <td colspan="5">
+          대표 신청인들이 조합에 제출할 「평형설문조사용 추정분담금 산정근거 자료 복사 신청」의 취지에 동의합니다.
         </td>
       </tr>
       <tr>
-        <td>전화번호<br><input id="phone" placeholder="예: 010-1234-5678"></td>
-        <td>팩스번호<br><input placeholder="선택 입력"></td>
-        <td>전자우편주소<br><input id="email" type="email" placeholder="선택 입력"></td>
+        <th>대상 사업구역</th>
+        <td colspan="5">압구정아파트지구 특별계획구역3 재건축정비사업조합</td>
       </tr>
       <tr>
-        <td class="label">사업구역명</td>
-        <td colspan="3" class="center">압구정아파트지구 특별계획구역3<br>재건축정비사업조합</td>
-      </tr>
-      <tr>
-        <td class="label">신청인 구분</td>
-        <td colspan="3"><select id="role"><option>조합원 본인</option><option>가족</option><option>대리인</option></select></td>
-      </tr>
-      <tr>
-        <td class="label">제공받은 서류와 자료의 사용목적</td>
-        <td colspan="3">
-          압구정3구역 전체 조합원의 합리적 의사결정, 평형설문조사용 추정분담금 산정근거 확인,
-          향후 종전자산평가·권리순번·평형배정 기준 관련 오해와 분쟁 예방 목적
+        <th>자료의 사용목적</th>
+        <td colspan="5">
+          압구정3구역 전체 조합원의 합리적 의사결정, 추정분담금 산정근거 확인, 향후 관리처분 단계의 분쟁 예방을 위한 자료복사 신청 취지 동의자 명부 작성
         </td>
       </tr>
       <tr>
-        <td class="label">개인정보를 제공받는 자</td>
-        <td colspan="3">압구정아파트지구 특별계획구역3 재건축정비사업조합 및 공동신청 제출 대표자</td>
-      </tr>
-      <tr>
-        <td class="label">청구하는 개인정보의 항목</td>
-        <td colspan="3">성명, 소유 동·호수, 연락처 뒤 4자리, 전자서명, 제출일시</td>
-      </tr>
-      <tr>
-        <td class="label">개인정보의 보유 및 이용기간</td>
-        <td colspan="3">자료복사 신청 및 관련 절차 종료 후 1년 이내 파기</td>
-      </tr>
-      <tr>
-        <td class="label">청구자료</td>
-        <td colspan="3">
-          <ol class="req-list">
-            <li>평형설문조사용 추정분담금 산정 원자료 및 산식</li>
-            <li>종전자산 추정가액 산정에 사용된 엑셀파일 또는 원자료</li>
-            <li>KB상위평균가를 적용한 근거자료 및 KB일반평균가가 아닌 KB상위평균가를 적용한 사유</li>
-            <li>공시가격보정액 산정자료 및 2.1배 보정률 산정근거</li>
-            <li>차수별·평형별·동별 대지지분표</li>
-            <li>추정분담금 자료에 대지지분을 표시하지 않은 사유에 관한 검토자료</li>
-            <li>차수별·평형별 종전자산 추정가액 비교에 사용된 기준자료<br><span class="small">개인정보 제외, 비식별 처리된 비교 기준·적용 시세·공시가격·보정방식·산정근거 자료</span></li>
-            <li>향후 조합원 분양신청, 권리순번, 평형 배정기준 수립 시 종전자산 추정가액 또는 종전자산 감정평가액이 어떻게 활용되는지에 관한 조합 내부 검토자료 또는 향후 설명계획</li>
-          </ol>
+        <th>개인정보를 제공받는 자</th>
+        <td colspan="5">
+          대표 신청인 및 자료복사 신청 업무를 위하여 필요한 범위 내의 실무 담당자
         </td>
+      </tr>
+      <tr>
+        <th>제공하는 개인정보 항목</th>
+        <td colspan="5">성명, 소유 동·호수, 연락처, 이메일, 신청인 구분, 전자서명, 제출일시</td>
+      </tr>
+      <tr>
+        <th>개인정보 보유 및 이용기간</th>
+        <td colspan="5">자료복사 신청 및 관련 절차 종료 후 1년 이내 파기</td>
       </tr>
     </table>
 
-    <div class="agree-box">
-      <div class="check"><input id="agree1" type="checkbox"><span>본인은 위 자료복사 공동신청 취지에 동의합니다.</span></div>
-      <div class="check"><input id="agree2" type="checkbox"><span>본 동의가 특정 차수의 이익 요구가 아니라, 압구정3구역 전체 조합원의 자료확인 및 장래 분쟁 예방 목적임을 확인합니다.</span></div>
-      <div class="check"><input id="agree3" type="checkbox"><span>본인의 성명, 소유 동·호수, 연락처 뒤 4자리, 전자서명, 제출일시가 공동신청인 명부에 포함되는 것에 동의합니다.</span></div>
-      <div class="check"><input id="privacy" type="checkbox"><span>개인정보 수집·이용에 동의합니다.</span></div>
-      <div class="privacy">수집 목적: 공동신청인 확인 및 자료복사 신청 제출 / 수집 항목: 성명, 소유 동·호수, 연락처, 이메일, 전자서명, 제출일시 / 보유기간: 관련 절차 종료 후 1년 이내</div>
+    <div class="notice">
+      <b>안내</b><br>
+      본 페이지는 정식 정보공개·복사 신청서를 개별로 제출하는 페이지가 아닙니다.
+      대표 신청인 약 3명이 정식 신청서와 필요한 신분증 사본을 첨부하여 조합에 제출할 예정이며,
+      동의하시는 조합원의 서명은 <b>붙임 동의자 명부</b>로 첨부할 예정입니다.
+      <br><br>
+      본 동의는 특정 차수의 이익을 요구하거나 현재 단계에서 종전자산 감정평가 결과를 다투기 위한 것이 아니라,
+      압구정3구역 전체 조합원이 조합 공식자료의 산정근거를 확인하고 장래 관리처분 단계의 불필요한 오해와 분쟁을 예방하기 위한 것입니다.
+      <br><br>
+      본 페이지는 금전, 계좌번호, 주민등록번호, 비밀번호를 요구하지 않습니다.
     </div>
 
-    <div class="signature-row">
-      <div class="center" style="margin-bottom:10px;">위와 같이 정보공개 자료 복사를 공동신청합니다.</div>
-      <div class="center muted">전자서명</div>
-      <canvas id="sig" width="800" height="240"></canvas>
-      <div class="button-row noprint"><button class="secondary" type="button" onclick="clearSignature()">서명 지우기</button></div>
-      <div class="seal-space">신청인 서명</div>
+    <h2>1. 대표 신청인들이 복사 신청할 핵심자료</h2>
+    <ol>
+      <li><b>평형설문조사용 추정분담금 산정 원자료 및 산식</b></li>
+      <li><b>종전자산 추정가액 산정에 사용된 엑셀파일 또는 원자료</b></li>
+      <li><b>KB상위평균가를 적용한 근거자료</b><br><span class="subnote">KB일반평균가가 아닌 KB상위평균가를 적용한 사유 포함</span></li>
+      <li><b>공시가격보정액 산정자료 및 2.1배 보정률 산정근거</b></li>
+      <li><b>차수별·평형별·동별 대지지분표</b></li>
+      <li><b>추정분담금 자료에 대지지분을 표시하지 않은 사유에 관한 검토자료</b></li>
+      <li><b>차수별·평형별 종전자산 추정가액 비교에 사용된 기준자료</b><br><span class="subnote">개인정보는 제외하고, 비식별 처리된 비교 기준·적용 시세·적용 공시가격·보정방식·산정근거 자료</span></li>
+      <li><b>향후 조합원 분양신청, 권리순번, 평형 배정기준 수립 시 종전자산 추정가액 또는 종전자산 감정평가액이 어떻게 활용되는지에 관한 조합 내부 검토자료 또는 향후 설명계획</b></li>
+    </ol>
+
+    <h2>2. 동의 내용</h2>
+    <div class="check-box">
+      <div class="check">
+        <input id="agree1" type="checkbox">
+        <span>본인은 대표 신청인들이 조합에 제출할 정비사업 관련자료 복사 신청의 취지에 동의합니다.</span>
+      </div>
+      <div class="check">
+        <input id="agree2" type="checkbox">
+        <span>본 동의가 특정 차수의 이익 요구가 아니라, 압구정3구역 전체 조합원의 자료확인 및 장래 분쟁 예방 목적임을 확인합니다.</span>
+      </div>
+      <div class="check">
+        <input id="agree3" type="checkbox">
+        <span>본인의 성명, 소유 동·호수, 연락처 뒤 4자리, 전자서명, 제출일시가 붙임 동의자 명부에 포함되는 것에 동의합니다.</span>
+      </div>
+      <div class="check">
+        <input id="privacy" type="checkbox">
+        <span>개인정보 수집·이용에 동의합니다. 수집 목적은 자료복사 신청 취지 동의자 확인 및 붙임 명부 작성이며, 수집 항목은 성명, 소유 동·호수, 연락처, 이메일, 전자서명, 제출일시입니다. 보유기간은 관련 절차 종료 후 1년 이내입니다.</span>
+      </div>
     </div>
 
-    <button class="primary noprint" id="submitBtn" onclick="submitForm()">공동신청 동의 제출</button>
-    <div id="done" class="done noprint">제출되었습니다. 참여해 주셔서 감사합니다.</div>
-    <div id="err" class="error noprint"></div>
+    <h2>3. 동의자 정보</h2>
+    <div class="row">
+      <div><label>성명</label><input id="name" placeholder="예: 홍길동"></div>
+      <div><label>소유 동</label><input id="building" placeholder="예: 87동"></div>
+    </div>
+    <div class="row">
+      <div><label>소유 호수</label><input id="unit" placeholder="예: 1103호"></div>
+      <div><label>연락처</label><input id="phone" placeholder="예: 010-1234-5678"></div>
+    </div>
+    <div class="row">
+      <div><label>이메일 선택</label><input id="email" type="email" placeholder="선택 입력"></div>
+      <div><label>신청인 구분</label><select id="role"><option>조합원 본인</option><option>가족</option><option>대리인</option></select></div>
+    </div>
 
-    <div class="bottom-org">압구정아파트지구 특별계획구역3 재건축정비사업조합 귀중</div>
+    <h2>4. 전자서명</h2>
+    <p class="sign-help">손가락 또는 마우스로 서명해 주세요.</p>
+    <canvas id="sig" width="800" height="240"></canvas>
+    <div style="display:flex;gap:10px;margin-top:10px">
+      <button class="secondary" type="button" onclick="clearSignature()">서명 지우기</button>
+    </div>
+
+    <button class="primary" id="submitBtn" onclick="submitForm()">자료복사 신청 취지 동의 제출</button>
+    <div id="done" class="done">제출되었습니다. 동의자 명부에 반영됩니다. 참여해 주셔서 감사합니다.</div>
+    <div id="err" class="error"></div>
+
+    <div class="footer">동의자  성명  및  서명</div>
   </div>
 </div>
 
@@ -220,13 +393,13 @@
     const payload = {
       name, building, unit, phone, phone_last4: phoneDigits.slice(-4), email, role,
       signature_png: signature,
-      consent_version: "v2_formstyle_20260628",
+      consent_version: "v2_attachment_consent_20260628",
       user_agent: navigator.userAgent
     };
 
     const { error } = await supabaseClient.from('consents').insert(payload);
     if(error){
-      btn.disabled=false; btn.innerText='공동신청 동의 제출';
+      btn.disabled=false; btn.innerText='자료복사 신청 취지 동의 제출';
       if(String(error.message).includes('duplicate')) return showError('이미 제출된 정보로 보입니다. 수정이 필요하면 관리자에게 문의해 주세요.');
       return showError('제출 중 오류가 발생했습니다: ' + error.message);
     }
