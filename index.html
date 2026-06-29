@@ -364,7 +364,7 @@
 
   function renderCount(count, afterSubmit=false) {
     const target = 1288;
-    const percent = Math.min(100, Math.round((count / target) * 10) / 10);
+    const percent = Math.min(100, Math.round((count / target) * 1000) / 10);
     const box = document.getElementById('countBox');
     const title = afterSubmit ? '제출되었습니다.' : '현재 참여 현황';
     box.innerHTML = `
